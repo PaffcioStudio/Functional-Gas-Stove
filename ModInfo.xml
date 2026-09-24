@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml>
+    <Name value="FunctionalGasStove" />
+    <DisplayName value="Functional Gas Stove" />
+    <Version value="1.0.4" />
+    <Description value="Turns vanilla gas ranges into functional gas-fueled cooking stations with Campfire recipes, pickup support, and Campfire-style recipe category tabs." />
+    <Author value="Paffcio" />
+</xml>

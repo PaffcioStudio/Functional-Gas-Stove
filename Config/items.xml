@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+    <!-- Gas Can is the only fuel accepted by the station because it is the
+         only item with a FuelValue added by this module. -->
+    <append xpath="/items/item[@name='ammoGasCan']">
+        <!-- Five minutes of stove burn time per Gas Can unit. -->
+        <property name="FuelValue" value="300" />
+    </append>
+</configs>

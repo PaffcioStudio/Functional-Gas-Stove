@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+    <!-- Craftable white gas range using item IDs available in V3.2. -->
+    <append xpath="/recipes">
+        <recipe name="cntgasRangeWhite" count="1" craft_time="30" craft_area="workbench" always_unlocked="true">
+            <ingredient name="resourceForgedIron" count="20" />
+            <ingredient name="resourceMechanicalParts" count="8" />
+            <ingredient name="resourceElectricParts" count="4" />
+            <ingredient name="resourceDuctTape" count="3" />
+        </recipe>
+    </append>
+</configs>

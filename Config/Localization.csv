@@ -1,0 +1,7 @@
+Key,File,Type,UsedInMainMenu,NoTranslate,KeepLoaded,english,polish
+cntgasRangeWhite,blocks,Block,,,x,"Gas Stove (White)","Kuchenka gazowa (biała)"
+cntgasRangeWhiteDesc,blocks,Block,,,x,"A functional gas stove that uses Gas Cans as fuel and supports Campfire recipes.","Funkcjonalna kuchenka gazowa na kanistry z gazem, obsługująca przepisy z ogniska."
+cntgasRangeGrey,blocks,Block,,,x,"Gas Stove (Grey)","Kuchenka gazowa (szara)"
+cntgasRangeGreyDesc,blocks,Block,,,x,"A functional gas stove that uses Gas Cans as fuel and supports Campfire recipes.","Funkcjonalna kuchenka gazowa na kanistry z gazem, obsługująca przepisy z ogniska."
+cntgasRangeBlack,blocks,Block,,,x,"Gas Stove (Black)","Kuchenka gazowa (czarna)"
+cntgasRangeBlackDesc,blocks,Block,,,x,"A functional gas stove that uses Gas Cans as fuel and supports Campfire recipes.","Funkcjonalna kuchenka gazowa na kanistry z gazem, obsługująca przepisy z ogniska."

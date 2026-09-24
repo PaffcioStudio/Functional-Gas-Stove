@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+    <!--
+        Makes the existing vanilla gas ranges functional cooking workstations.
+        V3.0+ derives the workstation XUi group from the block name, so matching
+        workstation_* XUi groups are supplied in Config/XUi_InGame/xui.xml.
+    -->
+
+    <append xpath="/blocks/block[@name='cntgasRangeWhite']">
+        <property name="Class" value="Campfire" />
+        <property name="CanPickup" value="true" />
+        <property name="TakeDelay" value="8" />
+        <property name="CreativeMode" value="Player" />
+        <property name="DescriptionKey" value="cntgasRangeWhiteDesc" />
+        <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
+        <property name="CraftIcon" value="ui_game_symbol_spatula" />
+        <property name="CraftActionName" value="lblContextActionCook" />
+        <property class="Workstation">
+            <property name="Modules" value="tools,output,fuel,input" />
+            <property name="CraftingAreaRecipes" value="campfire" />
+        </property>
+        <property name="HeatMapStrength" value="5" />
+        <property name="HeatMapTime" value="1200" />
+        <property name="HeatMapFrequency" value="25" />
+        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="SoundPickup" value="buildingblock_grab" />
+        <property name="SoundPlace" value="buildingblock_place" />
+    </append>
+
+    <append xpath="/blocks/block[@name='cntgasRangeGrey']">
+        <property name="Class" value="Campfire" />
+        <property name="CanPickup" value="true" />
+        <property name="TakeDelay" value="8" />
+        <property name="CreativeMode" value="Player" />
+        <property name="DescriptionKey" value="cntgasRangeGreyDesc" />
+        <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
+        <property name="CraftIcon" value="ui_game_symbol_spatula" />
+        <property name="CraftActionName" value="lblContextActionCook" />
+        <property class="Workstation">
+            <property name="Modules" value="tools,output,fuel,input" />
+            <property name="CraftingAreaRecipes" value="campfire" />
+        </property>
+        <property name="HeatMapStrength" value="5" />
+        <property name="HeatMapTime" value="1200" />
+        <property name="HeatMapFrequency" value="25" />
+        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="SoundPickup" value="buildingblock_grab" />
+        <property name="SoundPlace" value="buildingblock_place" />
+    </append>
+
+    <append xpath="/blocks/block[@name='cntgasRangeBlack']">
+        <property name="Class" value="Campfire" />
+        <property name="CanPickup" value="true" />
+        <property name="TakeDelay" value="8" />
+        <property name="CreativeMode" value="Player" />
+        <property name="DescriptionKey" value="cntgasRangeBlackDesc" />
+        <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
+        <property name="CraftIcon" value="ui_game_symbol_spatula" />
+        <property name="CraftActionName" value="lblContextActionCook" />
+        <property class="Workstation">
+            <property name="Modules" value="tools,output,fuel,input" />
+            <property name="CraftingAreaRecipes" value="campfire" />
+        </property>
+        <property name="HeatMapStrength" value="5" />
+        <property name="HeatMapTime" value="1200" />
+        <property name="HeatMapFrequency" value="25" />
+        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="SoundPickup" value="buildingblock_grab" />
+        <property name="SoundPlace" value="buildingblock_place" />
+    </append>
+</configs>
