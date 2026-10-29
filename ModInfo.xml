@@ -2,7 +2,8 @@
 <xml>
     <Name value="FunctionalGasStove" />
     <DisplayName value="Functional Gas Stove" />
-    <Version value="1.0.4" />
-    <Description value="Turns vanilla gas ranges into functional gas-fueled cooking stations with Campfire recipes, pickup support, and Campfire-style recipe category tabs." />
+    <Version value="1.0.5" />
+    <Description value="Turns vanilla gas ranges into gas-fueled cooking stations with campfire recipes and dedicated fuel handling for 7 Days to Die V3.x." />
     <Author value="Paffcio" />
+    <Website value="https://github.com/PaffcioStudio/Functional-Gas-Stove" />
 </xml>

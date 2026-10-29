@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace FunctionalGasStove
@@ -10,30 +11,85 @@ namespace FunctionalGasStove
         {
             var harmony = new Harmony("Paffcio.FunctionalGasStove");
             harmony.PatchAll(Assembly.GetExecutingAssembly());
-            Log.Out("[Functional Gas Stove] Harmony patches initialized.");
+            Log.Out("[Functional Gas Stove] Harmony patches initialized (V3.x fuel rules and recipe tabs).");
+        }
+    }
+
+    internal static class StoveRules
+    {
+        internal const float GasCanBurnSeconds = 300f;
+
+        internal static bool IsGasStove(TileEntityWorkstation station)
+        {
+            if (station == null || station.block == null)
+                return false;
+
+            string blockName = station.block.GetBlockName();
+            return string.Equals(blockName, "cntgasRangeWhite", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(blockName, "cntgasRangeGrey", StringComparison.OrdinalIgnoreCase)
+                || string.Equals(blockName, "cntgasRangeBlack", StringComparison.OrdinalIgnoreCase);
+        }
+
+        internal static bool IsGasCan(ItemStack stack)
+        {
+            if (stack == null || stack.IsEmpty() || stack.itemValue == null)
+                return false;
+
+            ItemClass itemClass = stack.itemValue.ItemClass;
+            return itemClass != null && string.Equals(itemClass.GetItemName(), "ammoGasCan", StringComparison.OrdinalIgnoreCase);
         }
     }
 
     /// <summary>
-    /// Vanilla category tabs are selected by XUiC_CategoryList.SetupCategoriesByWorkstation.
-    /// Vanilla knows the workstation key "campfire", but our dedicated stove window groups
-    /// pass their own keys (cntgasRangeWhite/Grey/Black). We alias those keys to campfire
-    /// just for category setup, so the stove gets the same category tabs as a campfire.
+    /// Apply a stove-specific fuel rule without changing ammoGasCan globally.
+    /// Both methods exist in V3.3 and V3.4 and can be used by different fuel paths.
+    /// Non-gas items may still appear in a fuel slot, but provide no burn time.
+    /// </summary>
+    [HarmonyPatch]
+    public static class GasStoveFuelPatch
+    {
+        [HarmonyTargetMethods]
+        public static IEnumerable<MethodBase> TargetMethods()
+        {
+            var stackArgs = new[] { typeof(ItemStack) };
+            var internalFuel = AccessTools.Method(typeof(TileEntityWorkstation), "getFuelTime", stackArgs);
+            var publicFuel = AccessTools.Method(typeof(TileEntityWorkstation), "GetFuelTime", stackArgs);
+
+            if (internalFuel != null)
+                yield return internalFuel;
+            if (publicFuel != null)
+                yield return publicFuel;
+        }
+
+        [HarmonyPostfix]
+        public static void Postfix(TileEntityWorkstation __instance, ItemStack __0, ref float __result)
+        {
+            if (!StoveRules.IsGasStove(__instance))
+                return;
+
+            __result = StoveRules.IsGasCan(__0) ? StoveRules.GasCanBurnSeconds : 0f;
+        }
+    }
+
+    /// <summary>
+    /// Reuse vanilla campfire recipe categories for each gas stove window group.
+    /// The original workstation key remains untouched outside this UI method.
     /// </summary>
     [HarmonyPatch(typeof(XUiC_CategoryList), "SetupCategoriesByWorkstation")]
     public static class CategoryListWorkstationPatch
     {
-        public static void Prefix(object[] __args)
+        [HarmonyPrefix]
+        public static void Prefix(ref string __0)
         {
-            if (__args == null || __args.Length == 0 || !(__args[0] is string workstation))
+            if (__0 == null)
                 return;
 
-            switch (workstation.Trim().ToLowerInvariant())
+            switch (__0.Trim().ToLowerInvariant())
             {
                 case "cntgasrangewhite":
                 case "cntgasrangegrey":
                 case "cntgasrangeblack":
-                    __args[0] = "campfire";
+                    __0 = "campfire";
                     break;
             }
         }

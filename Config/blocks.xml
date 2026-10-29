@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configs>
     <!--
-        Makes the existing vanilla gas ranges functional cooking workstations.
-        V3.0+ derives the workstation XUi group from the block name, so matching
-        workstation_* XUi groups are supplied in Config/XUi_InGame/xui.xml.
+        Convert existing gas ranges into campfire-compatible workstations.
+        V3.x resolves workstation window groups by block name.
+        Fuel restrictions and gas burn time are handled by the Harmony DLL.
     -->
 
     <append xpath="/blocks/block[@name='cntgasRangeWhite']">
         <property name="Class" value="Campfire" />
         <property name="CanPickup" value="true" />
         <property name="TakeDelay" value="8" />
-        <property name="CreativeMode" value="Player" />
         <property name="DescriptionKey" value="cntgasRangeWhiteDesc" />
         <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
         <property name="CraftIcon" value="ui_game_symbol_spatula" />
@@ -20,9 +19,9 @@
             <property name="CraftingAreaRecipes" value="campfire" />
         </property>
         <property name="HeatMapStrength" value="5" />
-        <property name="HeatMapTime" value="1200" />
-        <property name="HeatMapFrequency" value="25" />
-        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="HeatMapTime" value="5000" />
+        <property name="HeatMapFrequency" value="1000" />
+        <property name="ActiveRadiusEffects" value="buffCampfireAOE,3" />
         <property name="SoundPickup" value="buildingblock_grab" />
         <property name="SoundPlace" value="buildingblock_place" />
     </append>
@@ -31,7 +30,6 @@
         <property name="Class" value="Campfire" />
         <property name="CanPickup" value="true" />
         <property name="TakeDelay" value="8" />
-        <property name="CreativeMode" value="Player" />
         <property name="DescriptionKey" value="cntgasRangeGreyDesc" />
         <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
         <property name="CraftIcon" value="ui_game_symbol_spatula" />
@@ -41,9 +39,9 @@
             <property name="CraftingAreaRecipes" value="campfire" />
         </property>
         <property name="HeatMapStrength" value="5" />
-        <property name="HeatMapTime" value="1200" />
-        <property name="HeatMapFrequency" value="25" />
-        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="HeatMapTime" value="5000" />
+        <property name="HeatMapFrequency" value="1000" />
+        <property name="ActiveRadiusEffects" value="buffCampfireAOE,3" />
         <property name="SoundPickup" value="buildingblock_grab" />
         <property name="SoundPlace" value="buildingblock_place" />
     </append>
@@ -52,7 +50,6 @@
         <property name="Class" value="Campfire" />
         <property name="CanPickup" value="true" />
         <property name="TakeDelay" value="8" />
-        <property name="CreativeMode" value="Player" />
         <property name="DescriptionKey" value="cntgasRangeBlackDesc" />
         <property name="WorkstationIcon" value="ui_game_symbol_campfire" />
         <property name="CraftIcon" value="ui_game_symbol_spatula" />
@@ -62,10 +59,15 @@
             <property name="CraftingAreaRecipes" value="campfire" />
         </property>
         <property name="HeatMapStrength" value="5" />
-        <property name="HeatMapTime" value="1200" />
-        <property name="HeatMapFrequency" value="25" />
-        <property name="ActiveRadiusEffects" value="+heatSource(3)" />
+        <property name="HeatMapTime" value="5000" />
+        <property name="HeatMapFrequency" value="1000" />
+        <property name="ActiveRadiusEffects" value="buffCampfireAOE,3" />
         <property name="SoundPickup" value="buildingblock_grab" />
         <property name="SoundPlace" value="buildingblock_place" />
     </append>
+
+    <!-- Replace the existing CreativeMode values instead of creating duplicates. -->
+    <set xpath="/blocks/block[@name='cntgasRangeWhite']/property[@name='CreativeMode']/@value">Player</set>
+    <set xpath="/blocks/block[@name='cntgasRangeGrey']/property[@name='CreativeMode']/@value">Player</set>
+    <set xpath="/blocks/block[@name='cntgasRangeBlack']/property[@name='CreativeMode']/@value">Player</set>
 </configs>
